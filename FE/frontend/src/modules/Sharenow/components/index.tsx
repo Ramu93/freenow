@@ -75,7 +75,7 @@ const ShareNow: FC<ShareNowProps> = ({
           <>
             <div data-testid="shareNowVehicleItem">
               ID: {vehicle.id} <br />
-              Fuel: {vehicle.name} <br />
+              Name: {vehicle.name} <br />
               Address: {vehicle.address} <br />
               Engine Type: {vehicle.engineType} <br />
               Interior: {vehicle.interior} <br />

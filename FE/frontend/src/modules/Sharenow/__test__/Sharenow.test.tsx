@@ -1,21 +1,14 @@
 import React from "react";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import configureStore from "redux-mock-store";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import ShareNow from "../components";
-import App from "../../App";
 import shareNowVehicles from "../../../fixtures/shareNowVehicles.fixtures";
 
 const mockStore = configureStore([]);
-
-const renderWithRouter = (ui: any, { route }: { route: string }) => {
-  window.history.pushState({}, "Free Now", route);
-
-  return render(ui, { wrapper: MemoryRouter });
-};
 
 describe("Free Now ", () => {
   const store = mockStore({
@@ -40,18 +33,6 @@ describe("Free Now ", () => {
       </Provider>
     );
     expect(getByTestId("linkToFreeNow")).toHaveTextContent("Free Now");
-  });
-
-  it("Navigate to Share Now", () => {
-    const { getByTestId } = renderWithRouter(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      { route: "/sharenow" }
-    );
-    const navLink = getByTestId("linkToFreeNow");
-    fireEvent.click(navLink);
-    expect(location.pathname).toEqual("/freenow");
   });
 
   it("List items", () => {
