@@ -9,17 +9,36 @@ import {
 import { VehicleMarker } from "../../../common/interfaces/coords.interface";
 import Map from "../../../components/Map";
 import assets from "../../../constants/assets";
+import { useComponentDidMount } from "../../../utils/customHooks";
+import { getShareNowVehicles, getShareNowVehiclesSuccess } from "../actions";
+import endpoints from "../../../constants/endpoints";
+import { get } from "../../../utils/apiUtil";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
   isLoading: boolean;
+  getShareNowVehicles: Function;
+  getShareNowVehiclesSuccess: Function;
 };
 
-const ShareNow: FC<ShareNowProps> = ({ vehicles, isLoading }) => {
+const ShareNow: FC<ShareNowProps> = ({
+  vehicles,
+  isLoading,
+  getShareNowVehicles,
+  getShareNowVehiclesSuccess,
+}) => {
   const [filteredVehicles, setFilteredVehicles] = useState<SharenowVehicle[]>(
     []
   );
   const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
+
+  useComponentDidMount(async () => {
+    getShareNowVehicles();
+    const data = await get(
+      `${process.env.REACT_APP_BACKEND_URL}${endpoints.SHARENOW_VEHICLES}`
+    );
+    getShareNowVehiclesSuccess(data.placemarks);
+  });
 
   useEffect(() => {
     // initial load and no filters
@@ -72,4 +91,9 @@ const mapStateToProps = (state: object) => ({
   isLoading: getShareNowLoadingState(state),
 });
 
-export default connect(mapStateToProps)(ShareNow);
+const mapDispatchToProps = {
+  getShareNowVehicles,
+  getShareNowVehiclesSuccess,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShareNow);

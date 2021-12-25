@@ -6,16 +6,27 @@ import {
   FreenowVehicleState,
 } from "../interfaces/freenowVehicles.interface";
 import { getFreeNowLoadingState, getFreeNowVehiclesState } from "../selectors";
+import { getFreeNowVehicles, getFreeNowVehiclesSuccess } from "../actions";
 import { VehicleMarker } from "../../../common/interfaces/coords.interface";
 import Map from "../../../components/Map";
 import assets from "../../../constants/assets";
+import { useComponentDidMount } from "../../../utils/customHooks";
+import endpoints from "../../../constants/endpoints";
+import { get } from "../../../utils/apiUtil";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
   isLoading: boolean;
+  getFreeNowVehicles: Function;
+  getFreeNowVehiclesSuccess: Function;
 };
 
-const FreeNow: FC<FreeNowProps> = ({ vehicles, isLoading }) => {
+const FreeNow: FC<FreeNowProps> = ({
+  vehicles,
+  isLoading,
+  getFreeNowVehicles,
+  getFreeNowVehiclesSuccess,
+}) => {
   const [filteredVehicles, setFilteredVehicles] = useState<FreenowVehicle[]>(
     []
   );
@@ -24,6 +35,14 @@ const FreeNow: FC<FreeNowProps> = ({ vehicles, isLoading }) => {
     useState<FreenowVehicleState>();
 
   const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
+
+  useComponentDidMount(async () => {
+    getFreeNowVehicles();
+    const data = await get(
+      `${process.env.REACT_APP_BACKEND_URL}${endpoints.FREENOW_VEHICLES}`
+    );
+    getFreeNowVehiclesSuccess(data.poiList);
+  });
 
   useEffect(() => {
     if (selectedVehicleState) {
@@ -56,7 +75,9 @@ const FreeNow: FC<FreeNowProps> = ({ vehicles, isLoading }) => {
   return (
     <div>
       {isLoading && <span>Loading...</span>}
-      {!isLoading && <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />}
+      {!isLoading && (
+        <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />
+      )}
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
           <>
@@ -77,4 +98,9 @@ const mapStateToProps = (state: object) => ({
   isLoading: getFreeNowLoadingState(state),
 });
 
-export default connect(mapStateToProps)(FreeNow);
+const mapDispatchToProps = {
+  getFreeNowVehicles,
+  getFreeNowVehiclesSuccess,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FreeNow);
