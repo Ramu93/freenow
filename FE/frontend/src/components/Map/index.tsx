@@ -40,7 +40,7 @@ const MapContainer: FC<MapContainerProps> = ({
           scaledSize: new google.maps.Size(24, 24),
         }}
       >
-        {/* <InfoWindow visible={true} google={google}>
+        {/* <InfoWindow visible={true}>
           <div>{marker.id}</div>
         </InfoWindow> */}
       </Marker>

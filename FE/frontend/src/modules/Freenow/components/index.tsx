@@ -74,7 +74,6 @@ const FreeNow: FC<FreeNowProps> = ({
 
   return (
     <div>
-      {isLoading && <span>Loading...</span>}
       {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />
       )}

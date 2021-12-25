@@ -10,16 +10,18 @@ type AppProps = {};
 
 const App: React.FC<AppProps> = ({}) => {
   return (
-    <div className="App">
-      <Switch>
-        <Route path={paths.FREENOW}>
-          <FreeNow />
-        </Route>
-        <Route path={paths.SHARENOW}>
-          <ShareNow />
-        </Route>
-      </Switch>
-    </div>
+    <>
+      <div className="App">
+        <Switch>
+          <Route path={paths.FREENOW}>
+            <FreeNow />
+          </Route>
+          <Route path={paths.SHARENOW}>
+            <ShareNow />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 };
 

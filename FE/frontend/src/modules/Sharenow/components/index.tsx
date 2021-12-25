@@ -62,7 +62,7 @@ const ShareNow: FC<ShareNowProps> = ({
 
   return (
     <div>
-      {isLoading && <span>Loading...</span>}
+      {/* {isLoading && <span>Loading...</span>} */}
       {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_CAR} />
       )}
