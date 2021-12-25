@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 import paths from "../../constants/paths";
 import FreeNow from "../Freenow/components";
@@ -10,8 +10,8 @@ type AppProps = {};
 
 const App: React.FC<AppProps> = ({}) => {
   return (
-    <>
-      <div className="App">
+    <div className="App">
+      <BrowserRouter>
         <Switch>
           <Route path={paths.FREENOW}>
             <FreeNow />
@@ -20,8 +20,8 @@ const App: React.FC<AppProps> = ({}) => {
             <ShareNow />
           </Route>
         </Switch>
-      </div>
-    </>
+      </BrowserRouter>
+    </div>
   );
 };
 

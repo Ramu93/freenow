@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { SharenowVehicle } from "../interfaces/sharenow.interface";
 import {
@@ -13,6 +14,7 @@ import { useComponentDidMount } from "../../../utils/customHooks";
 import { getShareNowVehicles, getShareNowVehiclesSuccess } from "../actions";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
+import paths from "../../../constants/paths";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
@@ -62,14 +64,16 @@ const ShareNow: FC<ShareNowProps> = ({
 
   return (
     <div>
-      {/* {isLoading && <span>Loading...</span>} */}
+      <Link data-testid="linkToFreeNow" to={paths.FREENOW}>
+        Free Now
+      </Link>
       {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_CAR} />
       )}
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
           <>
-            <div>
+            <div data-testid="shareNowVehicleItem">
               ID: {vehicle.id} <br />
               Fuel: {vehicle.name} <br />
               Address: {vehicle.address} <br />

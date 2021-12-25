@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
   FreenowVehicle,
@@ -13,6 +14,7 @@ import assets from "../../../constants/assets";
 import { useComponentDidMount } from "../../../utils/customHooks";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
+import paths from "../../../constants/paths";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -73,14 +75,18 @@ const FreeNow: FC<FreeNowProps> = ({
   }, [filteredVehicles]);
 
   return (
-    <div>
+    <div data-testid="freeNowComponent">
+      <Link data-testid="linkToShareNow" to={paths.SHARENOW}>
+        Share Now
+      </Link>
       {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />
       )}
+
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
           <>
-            <div>
+            <div data-testid="freeNowVehicleItem">
               ID: {vehicle.id} <br />
               State: {vehicle.state} <br />
               Type: {vehicle.type} <br />
