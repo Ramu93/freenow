@@ -3,8 +3,8 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import paths from "../../constants/paths";
-import FreeNow from "../Freenow/pages";
-import ShareNow from "../Sharenow/pages";
+import FreeNow from "../Freenow/components";
+import ShareNow from "../Sharenow/components";
 import { useComponentDidMount } from "../../utils/customHooks";
 import {
   getFreeNowVehicles,
