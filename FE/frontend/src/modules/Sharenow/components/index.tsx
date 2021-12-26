@@ -35,10 +35,13 @@ const ShareNow: FC<ShareNowProps> = ({
   const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
 
   useComponentDidMount(async () => {
+    // set loader state
     getShareNowVehicles();
+    // fetch data
     const data = await get(
       `${process.env.REACT_APP_BACKEND_URL}${endpoints.SHARENOW_VEHICLES}`
     );
+    // set data and loader state to redux
     getShareNowVehiclesSuccess(data.placemarks);
   });
 

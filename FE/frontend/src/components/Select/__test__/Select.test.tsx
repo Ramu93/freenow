@@ -26,21 +26,21 @@ describe("Select component", () => {
       <Select options={options} onChange={handleChange} />
     );
 
-    let selectOptions = getAllByTestId("select-option");
+    let selectOptions = getAllByTestId("select-option") as HTMLOptionElement[];
 
     expect(selectOptions[0].selected).toBeTruthy();
     expect(selectOptions[1].selected).toBeFalsy();
     expect(selectOptions[2].selected).toBeFalsy();
   });
 
-  it("Option selection", () => {
+  it("Change option", () => {
     const mockChangeCallback = jest.fn((value) => value);
     const { getByTestId, getAllByTestId } = render(
       <Select options={options} onChange={mockChangeCallback} />
     );
 
     const selectComponent = getByTestId("select-component");
-    let selectOptions = getAllByTestId("select-option");
+    let selectOptions = getAllByTestId("select-option") as HTMLOptionElement[];
 
     fireEvent.change(selectComponent, { target: { value: options[1].value } });
 

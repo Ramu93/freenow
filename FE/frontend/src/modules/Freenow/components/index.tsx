@@ -47,10 +47,13 @@ const FreeNow: FC<FreeNowProps> = ({
   ];
 
   useComponentDidMount(async () => {
+    // fetch data on mount
+    // set loading state
     getFreeNowVehicles();
     const data = await get(
       `${process.env.REACT_APP_BACKEND_URL}${endpoints.FREENOW_VEHICLES}`
     );
+    // set data and loading state
     getFreeNowVehiclesSuccess(data.poiList);
   });
 
