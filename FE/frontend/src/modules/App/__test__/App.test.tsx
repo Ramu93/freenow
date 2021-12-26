@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import App from ".";
+import App from "..";
 
 const renderWithRouter = (ui: any, { route }: { route: string }) => {
   window.history.pushState({}, "Free Now", route);
@@ -35,7 +35,7 @@ describe("renders learn react link", () => {
       </Provider>,
       { route: "/sharenow" }
     );
-    const navLink = getByTestId("linkToFreeNow");
+    const navLink = getByTestId("link-to-free-now");
     fireEvent.click(navLink);
     expect(location.pathname).toEqual("/freenow");
   });
@@ -47,7 +47,7 @@ describe("renders learn react link", () => {
       </Provider>,
       { route: "/freenow" }
     );
-    const navLink = getByTestId("linkToShareNow");
+    const navLink = getByTestId("link-to-share-now");
     fireEvent.click(navLink);
     expect(location.pathname).toEqual("/sharenow");
   });

@@ -12,10 +12,6 @@ const mockStore = configureStore([]);
 
 describe("Free Now ", () => {
   const store = mockStore({
-    freeNow: {
-      isLoading: false,
-      vehicles: [],
-    },
     shareNow: {
       isLoading: false,
       vehicles: shareNowVehicles,
@@ -32,7 +28,7 @@ describe("Free Now ", () => {
         </BrowserRouter>
       </Provider>
     );
-    expect(getByTestId("linkToFreeNow")).toHaveTextContent("Free Now");
+    expect(getByTestId("link-to-free-now")).toHaveTextContent("Free Now");
   });
 
   it("List items", () => {
@@ -43,7 +39,7 @@ describe("Free Now ", () => {
         </BrowserRouter>
       </Provider>
     );
-    const content = getAllByTestId("shareNowVehicleItem");
+    const content = getAllByTestId("share-now-vehicle-item");
     expect(content.length).toBe(7);
   });
 });

@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import FreeNow from "../components";
-import App from "../../App";
 import freeNowVehicles from "../../../fixtures/freeNowVehicles.fixtures";
 
 const mockStore = configureStore([]);
@@ -16,10 +15,6 @@ describe("Free Now ", () => {
     freeNow: {
       isLoading: false,
       vehicles: freeNowVehicles,
-    },
-    shareNow: {
-      isLoading: false,
-      vehicles: [],
     },
   });
 
@@ -33,7 +28,7 @@ describe("Free Now ", () => {
         </BrowserRouter>
       </Provider>
     );
-    expect(getByTestId("linkToShareNow")).toHaveTextContent("Share Now");
+    expect(getByTestId("link-to-share-now")).toHaveTextContent("Share Now");
   });
 
   it("List items", () => {
@@ -44,7 +39,7 @@ describe("Free Now ", () => {
         </BrowserRouter>
       </Provider>
     );
-    const content = getAllByTestId("freeNowVehicleItem");
+    const content = getAllByTestId("free-now-vehicle-item");
     expect(content.length).toBe(6);
   });
 });

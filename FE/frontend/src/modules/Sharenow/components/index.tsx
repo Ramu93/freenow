@@ -64,7 +64,7 @@ const ShareNow: FC<ShareNowProps> = ({
 
   return (
     <div>
-      <Link data-testid="linkToFreeNow" to={paths.FREENOW}>
+      <Link data-testid="link-to-free-now" to={paths.FREENOW}>
         Free Now
       </Link>
       {!isLoading && (
@@ -73,7 +73,7 @@ const ShareNow: FC<ShareNowProps> = ({
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
           <>
-            <div data-testid="shareNowVehicleItem">
+            <div data-testid="share-now-vehicle-item">
               ID: {vehicle.id} <br />
               Name: {vehicle.name} <br />
               Address: {vehicle.address} <br />

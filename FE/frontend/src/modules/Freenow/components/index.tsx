@@ -15,6 +15,7 @@ import { useComponentDidMount } from "../../../utils/customHooks";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
 import paths from "../../../constants/paths";
+import Select from "../../../components/Select";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -32,11 +33,18 @@ const FreeNow: FC<FreeNowProps> = ({
   const [filteredVehicles, setFilteredVehicles] = useState<FreenowVehicle[]>(
     []
   );
-  // TODO: filer vehicles using selection
-  const [selectedVehicleState, setSelectedVehicleState] =
-    useState<FreenowVehicleState>();
+
+  const [selectedVehicleState, setSelectedVehicleState] = useState<
+    FreenowVehicleState | string
+  >("all");
 
   const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
+
+  const vehicleStateOptions = [
+    { label: "All", value: "all" },
+    { label: "Active", value: FreenowVehicleState.ACTIVE },
+    { label: "Inactive", value: FreenowVehicleState.INACTIVE },
+  ];
 
   useComponentDidMount(async () => {
     getFreeNowVehicles();
@@ -47,7 +55,7 @@ const FreeNow: FC<FreeNowProps> = ({
   });
 
   useEffect(() => {
-    if (selectedVehicleState) {
+    if (selectedVehicleState !== "all") {
       // filter based on selection
       const filteredData = vehicles.filter(
         (vehicle: FreenowVehicle) => vehicle.state === selectedVehicleState
@@ -74,11 +82,19 @@ const FreeNow: FC<FreeNowProps> = ({
     setVehicleMarkers(markers);
   }, [filteredVehicles]);
 
+  const vehicleStateChangeHandler = (value: any) => {
+    setSelectedVehicleState(value);
+  };
+
   return (
     <div data-testid="freeNowComponent">
-      <Link data-testid="linkToShareNow" to={paths.SHARENOW}>
+      <Link data-testid="link-to-share-now" to={paths.SHARENOW}>
         Share Now
       </Link>
+      <Select
+        options={vehicleStateOptions}
+        onChange={vehicleStateChangeHandler}
+      />
       {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />
       )}
@@ -86,7 +102,7 @@ const FreeNow: FC<FreeNowProps> = ({
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
           <>
-            <div data-testid="freeNowVehicleItem">
+            <div data-testid="free-now-vehicle-item">
               ID: {vehicle.id} <br />
               State: {vehicle.state} <br />
               Type: {vehicle.type} <br />
