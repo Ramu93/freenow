@@ -34,9 +34,9 @@ describe("Select component", () => {
   });
 
   it("Option selection", () => {
-    const mockChangeClallback = jest.fn((value) => value);
+    const mockChangeCallback = jest.fn((value) => value);
     const { getByTestId, getAllByTestId } = render(
-      <Select options={options} onChange={mockChangeClallback} />
+      <Select options={options} onChange={mockChangeCallback} />
     );
 
     const selectComponent = getByTestId("select-component");
@@ -45,8 +45,8 @@ describe("Select component", () => {
     fireEvent.change(selectComponent, { target: { value: options[1].value } });
 
     // test callback function
-    expect(mockChangeClallback).toHaveBeenCalledTimes(1);
-    expect(mockChangeClallback.mock.results[0].value).toBe(options[1].value);
+    expect(mockChangeCallback).toHaveBeenCalledTimes(1);
+    expect(mockChangeCallback.mock.results[0].value).toBe(options[1].value);
 
     // test options for selected value
     expect(selectOptions[0].selected).toBeFalsy();
