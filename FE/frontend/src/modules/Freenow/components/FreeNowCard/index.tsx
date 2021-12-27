@@ -1,19 +1,23 @@
 import React, { FC } from "react";
+import { MdOutlineCheckCircle, MdOutlineHighlightOff } from "react-icons/md";
+import { connect } from "react-redux";
+
+import "./styles.css";
+import colors from "../../../../constants/colors";
 import {
   FreenowVehicle,
   FreenowVehicleState,
 } from "../../interfaces/freenowVehicles.interface";
-import { MdOutlineCheckCircle, MdOutlineHighlightOff } from "react-icons/md";
-
-import "./styles.css";
-import colors from "../../../../constants/colors";
+import { setVehicleMarkers } from "../../../App/actions";
+import assets from "../../../../constants/assets";
 
 type FreeNowCardProps = {
   vehicle: FreenowVehicle;
+  setVehicleMarkers: Function;
 };
 
-const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
-  const { id, state } = vehicle;
+const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle, setVehicleMarkers }) => {
+  const { id, state, coordinate } = vehicle;
   let icon;
   if (state === FreenowVehicleState.ACTIVE) {
     icon = (
@@ -43,12 +47,30 @@ const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
     );
   }
 
+  const handleClick = () =>
+    setVehicleMarkers(
+      [
+        {
+          coords: { lat: coordinate.latitude, lng: coordinate.longitude },
+          label: id,
+          id,
+        },
+      ],
+      assets.ICON_TAXI
+    );
+
   return (
-    <div data-testid="free-now-vehicle-item" className="free-now-card">
+    <div
+      data-testid="free-now-vehicle-item"
+      className="free-now-card"
+      onClick={handleClick}
+    >
       <div className="card-row-container">
         <div className="state-item-container">
           <span className="state-item-label">ID</span>
-          <div className="state-item-value" data-testid="state-item-value">{id}</div>
+          <div className="state-item-value" data-testid="state-item-value">
+            {id}
+          </div>
         </div>
         <div className="state-item-container">
           <span className="state-item-label">STATE</span>
@@ -62,4 +84,8 @@ const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
   );
 };
 
-export default FreeNowCard;
+const mapDispatchToProps = {
+  setVehicleMarkers,
+};
+
+export default connect(null, mapDispatchToProps)(FreeNowCard);

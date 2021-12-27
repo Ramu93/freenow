@@ -16,6 +16,7 @@ import Select from "../../../components/Select";
 import assets from "../../../constants/assets";
 import Loader from "../../../components/Loader";
 import FreeNowCard from "./FreeNowCard";
+import ResetButton from "../../../components/ResetButton";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -98,10 +99,13 @@ const FreeNow: FC<FreeNowProps> = ({
 
   return (
     <div data-testid="free-now-component">
-      <Select
-        options={vehicleStateOptions}
-        onChange={vehicleStateChangeHandler}
-      />
+      <div className="action-btn-container">
+        <ResetButton onClick={() => updateFilteredVehicles()} />
+        <Select
+          options={vehicleStateOptions}
+          onChange={vehicleStateChangeHandler}
+        />
+      </div>
       {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (

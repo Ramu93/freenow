@@ -1,18 +1,52 @@
 import React, { FC } from "react";
 import { IoLocationOutline, IoCarOutline } from "react-icons/io5";
+import { connect } from "react-redux";
 
 import { SharenowVehicle } from "../../interfaces/sharenow.interface";
 import ConditionItem, { Icon, Position } from "./ConditionItem";
+import { setVehicleMarkers } from "../../../App/actions";
+import assets from "../../../../constants/assets";
 import "./styles.css";
 
 type ShareNowCardProps = {
   vehicle: SharenowVehicle;
+  setVehicleMarkers: Function;
 };
 
-const ShareNowCard: FC<ShareNowCardProps> = ({ vehicle }) => {
-  const { name, exterior, interior, engineType, fuel, vin, address } = vehicle;
+const ShareNowCard: FC<ShareNowCardProps> = ({
+  vehicle,
+  setVehicleMarkers,
+}) => {
+  const {
+    name,
+    exterior,
+    interior,
+    engineType,
+    fuel,
+    vin,
+    address,
+    coordinates,
+    id,
+  } = vehicle;
+
+  const handleClick = () =>
+    setVehicleMarkers(
+      [
+        {
+          coords: { lat: coordinates[1], lng: coordinates[0] },
+          label: name,
+          id,
+        },
+      ],
+      assets.ICON_CAR
+    );
+
   return (
-    <div className="share-now-card" data-testid="share-now-vehicle-item">
+    <div
+      className="share-now-card"
+      data-testid="share-now-vehicle-item"
+      onClick={handleClick}
+    >
       <div className="card-row-container">
         <span className="text-vehicle-name">{name}</span>
       </div>
@@ -53,4 +87,8 @@ const ShareNowCard: FC<ShareNowCardProps> = ({ vehicle }) => {
   );
 };
 
-export default ShareNowCard;
+const mapDispatchToProps = {
+  setVehicleMarkers,
+};
+
+export default connect(null, mapDispatchToProps)(ShareNowCard);

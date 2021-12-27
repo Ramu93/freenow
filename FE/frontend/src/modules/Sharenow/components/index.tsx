@@ -15,6 +15,7 @@ import { get } from "../../../utils/apiUtil";
 import assets from "../../../constants/assets";
 import ShareNowCard from "./ShareNowCard";
 import Loader from "../../../components/Loader";
+import ResetButton from "../../../components/ResetButton";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
@@ -31,10 +32,6 @@ const ShareNow: FC<ShareNowProps> = ({
   getShareNowVehiclesSuccess,
   setVehicleMarkers,
 }) => {
-  const [filteredVehicles, setFilteredVehicles] = useState<SharenowVehicle[]>(
-    []
-  );
-
   useComponentDidMount(async () => {
     // set loader state
     getShareNowVehicles();
@@ -46,21 +43,9 @@ const ShareNow: FC<ShareNowProps> = ({
     getShareNowVehiclesSuccess(data.placemarks);
   });
 
-  const updateFilteredVehicles = useMemo(
-    () => () => {
-      setFilteredVehicles(vehicles);
-    },
-    [vehicles]
-  );
-
-  useEffect(() => {
-    // initial load and no filters
-    updateFilteredVehicles();
-  }, [vehicles]);
-
   // update vehicle markers on filtering vehicles
-  useEffect(() => {
-    const markers: VehicleMarker[] = filteredVehicles.map(
+  const updateVehicleMarkers = () => {
+    const markers: VehicleMarker[] = vehicles.map(
       (vehicle: SharenowVehicle) => ({
         label: vehicle.id.toString(),
         id: vehicle.id,
@@ -71,13 +56,20 @@ const ShareNow: FC<ShareNowProps> = ({
       })
     );
     setVehicleMarkers(markers, assets.ICON_CAR);
-  }, [filteredVehicles]);
+  };
+
+  useEffect(() => {
+    updateVehicleMarkers();
+  }, [vehicles]);
 
   return (
     <div data-testid="share-now-component">
       {isLoading && <Loader />}
+      <div className="action-btn-container">
+        <ResetButton onClick={() => updateVehicleMarkers()} />
+      </div>
       {!isLoading &&
-        filteredVehicles.map((vehicle: SharenowVehicle) => (
+        vehicles.map((vehicle: SharenowVehicle) => (
           <ShareNowCard vehicle={vehicle} />
         ))}
     </div>

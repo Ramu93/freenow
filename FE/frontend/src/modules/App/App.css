@@ -41,7 +41,20 @@ select {
 }
 
 .select-container {
-  width: 100%;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.reset-button {
+  cursor: pointer;
+  margin: 10px;
+  color: #37a0fc;
+}
+
+.action-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

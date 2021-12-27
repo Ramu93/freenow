@@ -6,6 +6,7 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: rgb(231, 231, 231);
+  cursor: pointer;
 }
 
 .card-row-container {
@@ -43,3 +44,5 @@
   font-size: small;
   margin-top: 5px;
 }
+
+
