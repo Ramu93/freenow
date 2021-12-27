@@ -74,13 +74,13 @@ const ShareNow: FC<ShareNowProps> = ({
   }, [filteredVehicles]);
 
   return (
-    <>
+    <div data-testid="share-now-component">
       {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
           <ShareNowCard vehicle={vehicle} />
         ))}
-    </>
+    </div>
   );
 };
 

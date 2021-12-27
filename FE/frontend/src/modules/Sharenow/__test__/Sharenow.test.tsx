@@ -11,7 +11,7 @@ import shareNowVehicles from "../../../fixtures/shareNowVehicles.fixtures";
 const mockStore = configureStore([]);
 
 describe("Free Now ", () => {
-  const store = mockStore({
+  let store = mockStore({
     shareNow: {
       isLoading: false,
       vehicles: shareNowVehicles,
@@ -30,5 +30,24 @@ describe("Free Now ", () => {
     );
     const content = getAllByTestId("share-now-vehicle-item");
     expect(content.length).toBe(7);
+  });
+
+  it("Loader based on redux state", () => {
+    store = mockStore({
+      shareNow: {
+        isLoading: true,
+        vehicles: [],
+      },
+    });
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <ShareNow />
+        </BrowserRouter>
+      </Provider>
+    );
+    const loader = getByTestId("loader-component");
+    expect(loader).toBeTruthy();
+    expect(getByTestId("share-now-component")).toHaveTextContent("Loading...");
   });
 });

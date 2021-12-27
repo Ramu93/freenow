@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useMemo } from "react";
 import { BsHandThumbsUp, BsHandThumbsDown } from "react-icons/bs";
 import { RiGasStationLine } from "react-icons/ri";
-import colors from "../../../../constants/colors";
 
 import { ConditionEnum } from "../../interfaces/sharenow.interface";
+import colors from "../../../../constants/colors";
 
 type ConditionItemProps = {
   label: string;
@@ -39,24 +39,40 @@ const ConditionItem: FC<ConditionItemProps> = ({
     } else if (value > 25 && value < 75) {
       color = colors.ORANGE;
     }
-    icon = <RiGasStationLine size={16} className="custom-icon" color={color} />;
+    icon = (
+      <div data-testid="icon-fuel" className={`test-color-${color.slice(0)}`}>
+        <RiGasStationLine size={16} className="custom-icon" color={color} />
+      </div>
+    );
   } else if (iconType === Icon.THUMBS) {
     // icon type THUMBS
     if (value === ConditionEnum.GOOD) {
       icon = (
-        <BsHandThumbsUp size={16} className="custom-icon" color="#03ad3f" />
+        <div data-testid="icon-thumbs-up">
+          <BsHandThumbsUp
+            size={16}
+            className="custom-icon"
+            color={colors.GREEN}
+          />
+        </div>
       );
     } else if (value === ConditionEnum.UNACCEPTABLE) {
       icon = (
-        <BsHandThumbsDown size={16} className="custom-icon" color="#ad0303" />
+        <div data-testid="icon-thumbs-down">
+          <BsHandThumbsDown
+            size={16}
+            className="custom-icon"
+            color={colors.RED}
+          />
+        </div>
       );
     }
   }
 
   return (
-    <div className="condition-item-container">
+    <div className="condition-item-container" data-testid="condition-item">
       <span className="condition-item-label">{label}</span>
-      <div className="condition-item-value">
+      <div className="condition-item-value" data-testid="condition-item-value">
         {icon}
         <span>{iconType === Icon.FUEL ? `${value}%` : value}</span>
       </div>

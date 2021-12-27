@@ -17,19 +17,29 @@ const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
   let icon;
   if (state === FreenowVehicleState.ACTIVE) {
     icon = (
-      <MdOutlineCheckCircle
-        size={16}
-        color={colors.GREEN}
-        className="custom-icon"
-      />
+      <div
+        data-testid="icon-active"
+        className={`test-color-${colors.GREEN.slice(0)}`}
+      >
+        <MdOutlineCheckCircle
+          size={16}
+          color={colors.GREEN}
+          className="custom-icon"
+        />
+      </div>
     );
   } else {
     icon = (
-      <MdOutlineHighlightOff
-        size={16}
-        color={colors.RED}
-        className="custom-icon"
-      />
+      <div
+        data-testid="icon-inactive"
+        className={`test-color-${colors.RED.slice(0)}`}
+      >
+        <MdOutlineHighlightOff
+          size={16}
+          color={colors.RED}
+          className="custom-icon"
+        />
+      </div>
     );
   }
 
@@ -38,11 +48,11 @@ const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
       <div className="card-row-container">
         <div className="state-item-container">
           <span className="state-item-label">ID</span>
-          <div className="state-item-value">{id}</div>
+          <div className="state-item-value" data-testid="state-item-value">{id}</div>
         </div>
         <div className="state-item-container">
           <span className="state-item-label">STATE</span>
-          <div className="state-item-value">
+          <div className="state-item-value" data-testid="state-item-value">
             {icon}
             <span>{state}</span>
           </div>
