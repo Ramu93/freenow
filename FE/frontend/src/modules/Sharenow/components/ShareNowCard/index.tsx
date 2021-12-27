@@ -12,7 +12,7 @@ type ShareNowCardProps = {
 const ShareNowCard: FC<ShareNowCardProps> = ({ vehicle }) => {
   const { name, exterior, interior, engineType, fuel, vin, address } = vehicle;
   return (
-    <div className="share-now-card">
+    <div className="share-now-card" data-testid="share-now-vehicle-item">
       <div className="card-row-container">
         <span className="text-vehicle-name">{name}</span>
       </div>

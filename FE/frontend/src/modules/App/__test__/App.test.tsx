@@ -16,6 +16,10 @@ const mockStore = configureStore([]);
 
 describe("renders learn react link", () => {
   const store = mockStore({
+    app: {
+      vehicleMarkers: [],
+      vehicleIconUri: "",
+    },
     freeNow: {
       isLoading: false,
       vehicles: [],

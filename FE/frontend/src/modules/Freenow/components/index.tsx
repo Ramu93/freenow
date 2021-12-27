@@ -15,6 +15,7 @@ import { get } from "../../../utils/apiUtil";
 import Select from "../../../components/Select";
 import assets from "../../../constants/assets";
 import Loader from "../../../components/Loader";
+import FreeNowCard from "./FreeNowCard";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -96,7 +97,7 @@ const FreeNow: FC<FreeNowProps> = ({
   };
 
   return (
-    <div data-testid="freeNowComponent">
+    <div data-testid="free-now-component">
       <Select
         options={vehicleStateOptions}
         onChange={vehicleStateChangeHandler}
@@ -104,14 +105,7 @@ const FreeNow: FC<FreeNowProps> = ({
       {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
-          <>
-            <div data-testid="free-now-vehicle-item">
-              ID: {vehicle.id} <br />
-              State: {vehicle.state} <br />
-              Type: {vehicle.type} <br />
-            </div>
-            <hr />
-          </>
+          <FreeNowCard vehicle={vehicle} />
         ))}
     </div>
   );

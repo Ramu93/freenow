@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useMemo } from "react";
+import React, { FC, useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import { MdLocalTaxi } from "react-icons/md";
 import { IoMdCar } from "react-icons/io";
@@ -28,39 +28,24 @@ const NavBar: FC<NavBarProps> = ({}) => {
     }
   }, [location]);
 
-  const determineNavElementClass = useMemo(
-    () => (route: RouteEnum) => {
-      const activeNavClass = "nav-element active-nav-element";
-      const navClass = "nav-element";
-      if (selectedRoute === route) {
-        return activeNavClass;
-      }
-      return navClass;
-    },
-    [selectedRoute]
-  );
-
-  const determineNavTextClass = useMemo(
-    () => (route: RouteEnum) => {
-      const activeNavTextClass = "nav-text active-nav-text";
-      const navTextClass = "nav-text";
-      if (selectedRoute === route) {
-        return activeNavTextClass;
-      }
-      return navTextClass;
-    },
-    [selectedRoute]
-  );
-
   return (
     <div className="nav-container">
       <Link
         data-testid="link-to-share-now"
         to={paths.SHARENOW}
-        onClick={() => setSelectedRoute(RouteEnum.SHARE_NOW)}
-        className={determineNavElementClass(RouteEnum.SHARE_NOW)}
+        className={
+          selectedRoute === RouteEnum.SHARE_NOW
+            ? "nav-element active-nav-element"
+            : "nav-element"
+        }
       >
-        <span className={determineNavTextClass(RouteEnum.SHARE_NOW)}>
+        <span
+          className={
+            selectedRoute === RouteEnum.SHARE_NOW
+              ? "nav-text active-nav-text"
+              : "nav-text"
+          }
+        >
           <IoMdCar size={22} className="nav-icon" />
           Share Now
         </span>
@@ -68,10 +53,19 @@ const NavBar: FC<NavBarProps> = ({}) => {
       <Link
         data-testid="link-to-free-now"
         to={paths.FREENOW}
-        onClick={() => setSelectedRoute(RouteEnum.FREE_NOW)}
-        className={determineNavElementClass(RouteEnum.FREE_NOW)}
+        className={
+          selectedRoute === RouteEnum.FREE_NOW
+            ? "nav-element active-nav-element"
+            : "nav-element"
+        }
       >
-        <span className={determineNavTextClass(RouteEnum.FREE_NOW)}>
+        <span
+          className={
+            selectedRoute === RouteEnum.FREE_NOW
+              ? "nav-text active-nav-text"
+              : "nav-text"
+          }
+        >
           <MdLocalTaxi size={22} className="nav-icon" />
           Free Now
         </span>
@@ -80,4 +74,4 @@ const NavBar: FC<NavBarProps> = ({}) => {
   );
 };
 
-export default NavBar;
+export default memo(NavBar);

@@ -20,17 +20,6 @@ describe("Free Now ", () => {
 
   afterEach(cleanup);
 
-  it("Link to Free Now", () => {
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <ShareNow />
-        </BrowserRouter>
-      </Provider>
-    );
-    expect(getByTestId("link-to-free-now")).toHaveTextContent("Free Now");
-  });
-
   it("List items", () => {
     const { getAllByTestId } = render(
       <Provider store={store}>

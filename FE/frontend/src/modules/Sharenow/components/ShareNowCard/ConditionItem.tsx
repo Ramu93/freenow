@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useMemo } from "react";
 import { BsHandThumbsUp, BsHandThumbsDown } from "react-icons/bs";
 import { RiGasStationLine } from "react-icons/ri";
+import colors from "../../../../constants/colors";
 
 import { ConditionEnum } from "../../interfaces/sharenow.interface";
 
@@ -32,11 +33,11 @@ const ConditionItem: FC<ConditionItemProps> = ({
   let color;
 
   if (iconType === Icon.FUEL) {
-    color = "#03ad3f";
+    color = colors.GREEN;
     if (value <= 25) {
-      color = "#ad0303";
+      color = colors.RED;
     } else if (value > 25 && value < 75) {
-      color = "#c97a02";
+      color = colors.ORANGE;
     }
     icon = <RiGasStationLine size={16} className="custom-icon" color={color} />;
   } else if (iconType === Icon.THUMBS) {
@@ -57,9 +58,7 @@ const ConditionItem: FC<ConditionItemProps> = ({
       <span className="condition-item-label">{label}</span>
       <div className="condition-item-value">
         {icon}
-        <span className="condition-value-text">
-          {iconType === Icon.FUEL ? `${value}%` : value}
-        </span>
+        <span>{iconType === Icon.FUEL ? `${value}%` : value}</span>
       </div>
     </div>
   );

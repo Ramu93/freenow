@@ -23,10 +23,10 @@ const App: React.FC<AppProps> = ({ vehicleMarkers, vehicleIconUri }) => {
         <div className="vehicle-container">
           <NavBar />
           <Switch>
-            <Route path={paths.SHARENOW}>
+            <Route exact path={paths.SHARENOW}>
               <ShareNow />
             </Route>
-            <Route path={paths.FREENOW}>
+            <Route exact path={paths.FREENOW}>
               <FreeNow />
             </Route>
             <Redirect to={paths.SHARENOW} />

@@ -1,0 +1,45 @@
+.free-now-card {
+  height: 3em;
+  margin: 5px 40px 5px 40px;
+  display: flex;
+  flex-direction: column;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(231, 231, 231);
+}
+
+.card-row-container {
+  height: 2em;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.text-vehicle-id {
+  flex: 1;
+  font-weight: 700;
+}
+
+.state-item-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.state-item-label {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #8a8a8a;
+  font-size: x-small;
+}
+
+.state-item-value {
+  flex: 1;
+  display: flex;
+  font-size: small;
+  margin-top: 5px;
+}
