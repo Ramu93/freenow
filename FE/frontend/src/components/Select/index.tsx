@@ -10,11 +10,12 @@ export interface Option {
   value: any;
 }
 
-const Select: FC<SelectProps> = ({ options, onChange }) => {
-  return (
+const Select: FC<SelectProps> = ({ options, onChange }) => (
+  <div className="select-container">
     <select
       data-testid="select-component"
       onChange={(event) => onChange(event.target.value)}
+      className="box"
     >
       {options.map((option: Option) => (
         <option
@@ -26,7 +27,7 @@ const Select: FC<SelectProps> = ({ options, onChange }) => {
         </option>
       ))}
     </select>
-  );
-};
+  </div>
+);
 
 export default Select;
