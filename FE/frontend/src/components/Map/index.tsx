@@ -7,7 +7,7 @@ import {
 } from "../../common/interfaces/coords.interface";
 
 const mapStyles = {
-  width: "100%",
+  width: "50%",
   height: "100%",
 };
 
@@ -30,7 +30,7 @@ const MapContainer: FC<MapContainerProps> = ({
   showLabels,
   iconUri,
 }) => (
-  <Map google={google} zoom={14} style={mapStyles} initialCenter={MapCenter}>
+  <Map google={google} zoom={14}  initialCenter={MapCenter}>
     {vehicleMarkers.map((marker: VehicleMarker) => (
       <Marker
         label={showLabels ? marker.label : undefined}

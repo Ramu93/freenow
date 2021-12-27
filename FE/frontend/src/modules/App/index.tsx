@@ -1,13 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import paths from "../../constants/paths";
 import FreeNow from "../Freenow/components";
 import ShareNow from "../Sharenow/components";
 import Map from "../../components/Map";
-import assets from "../../constants/assets";
 import NavBar from "./components/NavBar";
 import { getVehicleMarkersState, getVehicleIconUri } from "./selectors";
 import { VehicleMarker } from "../../common/interfaces/coords.interface";
@@ -24,12 +23,13 @@ const App: React.FC<AppProps> = ({ vehicleMarkers, vehicleIconUri }) => {
         <div className="vehicle-container">
           <NavBar />
           <Switch>
-            <Route path={paths.FREENOW}>
-              <FreeNow />
-            </Route>
             <Route path={paths.SHARENOW}>
               <ShareNow />
             </Route>
+            <Route path={paths.FREENOW}>
+              <FreeNow />
+            </Route>
+            <Redirect to={paths.SHARENOW} />
           </Switch>
         </div>
         <div className="map-container">

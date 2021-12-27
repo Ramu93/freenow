@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 
 import { SharenowVehicle } from "../interfaces/sharenow.interface";
@@ -44,9 +44,14 @@ const ShareNow: FC<ShareNowProps> = ({
     getShareNowVehiclesSuccess(data.placemarks);
   });
 
+  const updateFilteredVehicles = useMemo(
+    () => () => setFilteredVehicles(vehicles),
+    [vehicles]
+  );
+
   useEffect(() => {
     // initial load and no filters
-    setFilteredVehicles(vehicles);
+    updateFilteredVehicles();
   }, [vehicles]);
 
   // update vehicle markers on filtering vehicles

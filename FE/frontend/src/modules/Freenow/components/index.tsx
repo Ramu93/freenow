@@ -1,6 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import {
   FreenowVehicle,
@@ -56,17 +55,24 @@ const FreeNow: FC<FreeNowProps> = ({
     getFreeNowVehiclesSuccess(data.poiList);
   });
 
+  const updateFilteredVehicles = useMemo(
+    () => () => {
+      if (selectedVehicleState !== "all") {
+        // filter based on selection
+        const filteredData = vehicles.filter(
+          (vehicle: FreenowVehicle) => vehicle.state === selectedVehicleState
+        );
+        setFilteredVehicles(filteredData);
+      } else {
+        // used for initial loading and no filters
+        setFilteredVehicles(vehicles);
+      }
+    },
+    [selectedVehicleState, vehicles]
+  );
+
   useEffect(() => {
-    if (selectedVehicleState !== "all") {
-      // filter based on selection
-      const filteredData = vehicles.filter(
-        (vehicle: FreenowVehicle) => vehicle.state === selectedVehicleState
-      );
-      setFilteredVehicles(filteredData);
-    } else {
-      // used for initial loading and no filters
-      setFilteredVehicles(vehicles);
-    }
+    updateFilteredVehicles();
   }, [selectedVehicleState, vehicles]);
 
   // update vehicle markers on filtering vehicles

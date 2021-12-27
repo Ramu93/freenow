@@ -1,7 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { MdLocalTaxi } from "react-icons/md";
 import { IoMdCar } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 import paths from "../../../../constants/paths";
 import "./styles.css";
@@ -14,27 +15,42 @@ enum RouteEnum {
 }
 
 const NavBar: FC<NavBarProps> = ({}) => {
-  const [selectedRoute, setSelectedRoute] = useState<RouteEnum>(
-    RouteEnum.SHARE_NOW
+  const location = useLocation();
+
+  const [selectedRoute, setSelectedRoute] = useState<RouteEnum>();
+
+  // handlers when route changed directly from the address bar
+  useEffect(() => {
+    if (location.pathname === paths.FREENOW) {
+      setSelectedRoute(RouteEnum.FREE_NOW);
+    } else if (location.pathname === paths.SHARENOW) {
+      setSelectedRoute(RouteEnum.SHARE_NOW);
+    }
+  }, [location]);
+
+  const determineNavElementClass = useMemo(
+    () => (route: RouteEnum) => {
+      const activeNavClass = "nav-element active-nav-element";
+      const navClass = "nav-element";
+      if (selectedRoute === route) {
+        return activeNavClass;
+      }
+      return navClass;
+    },
+    [selectedRoute]
   );
 
-  const determineNavElementClass = (route: RouteEnum) => {
-    const activeNavClass = "nav-element active-nav-element";
-    const navClass = "nav-element";
-    if (selectedRoute === route) {
-      return activeNavClass;
-    }
-    return navClass;
-  };
-
-  const determineNavTextClass = (route: RouteEnum) => {
-    const activeNavTextClass = "nav-text active-nav-text";
-    const navTextClass = "nav-text";
-    if (selectedRoute === route) {
-      return activeNavTextClass;
-    }
-    return navTextClass;
-  };
+  const determineNavTextClass = useMemo(
+    () => (route: RouteEnum) => {
+      const activeNavTextClass = "nav-text active-nav-text";
+      const navTextClass = "nav-text";
+      if (selectedRoute === route) {
+        return activeNavTextClass;
+      }
+      return navTextClass;
+    },
+    [selectedRoute]
+  );
 
   return (
     <div className="nav-container">
