@@ -1,6 +1,4 @@
 import { createAction } from "redux-actions";
-import endpoints from "../../../constants/endpoints";
-import { get } from "../../../utils/apiUtil";
 import { FreenowVehicle } from "../interfaces/freenowVehicles.interface";
 
 export const getFreeNowVehicles = createAction(

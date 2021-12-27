@@ -8,7 +8,7 @@ import {
 
 const mapStyles = {
   width: "100%",
-  height: "50%",
+  height: "100%",
 };
 
 //coordinates of Hamburg, Germany
@@ -21,14 +21,14 @@ type MapContainerProps = {
   google: typeof google;
   vehicleMarkers: VehicleMarker[];
   showLabels?: boolean;
-  icon: string;
+  iconUri: string;
 };
 
 const MapContainer: FC<MapContainerProps> = ({
   google,
   vehicleMarkers,
   showLabels,
-  icon,
+  iconUri,
 }) => (
   <Map google={google} zoom={14} style={mapStyles} initialCenter={MapCenter}>
     {vehicleMarkers.map((marker: VehicleMarker) => (
@@ -36,7 +36,7 @@ const MapContainer: FC<MapContainerProps> = ({
         label={showLabels ? marker.label : undefined}
         position={marker.coords}
         icon={{
-          url: icon,
+          url: iconUri,
           scaledSize: new google.maps.Size(24, 24),
         }}
       >

@@ -1,0 +1,34 @@
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.nav-container {
+  height: 4em;
+  display: flex;
+}
+
+.nav-element {
+  flex: 1;
+}
+
+.active-nav-element {
+  background-color: rgb(238, 247, 255);
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #37a0fc;
+}
+
+.nav-text {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: grey;
+}
+
+.active-nav-text {
+  color: #37a0fc;
+}

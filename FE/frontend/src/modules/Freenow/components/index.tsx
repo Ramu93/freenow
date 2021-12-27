@@ -8,20 +8,20 @@ import {
 } from "../interfaces/freenowVehicles.interface";
 import { getFreeNowLoadingState, getFreeNowVehiclesState } from "../selectors";
 import { getFreeNowVehicles, getFreeNowVehiclesSuccess } from "../actions";
+import { setVehicleMarkers } from "../../App/actions";
 import { VehicleMarker } from "../../../common/interfaces/coords.interface";
-import Map from "../../../components/Map";
-import assets from "../../../constants/assets";
 import { useComponentDidMount } from "../../../utils/customHooks";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
-import paths from "../../../constants/paths";
 import Select from "../../../components/Select";
+import assets from "../../../constants/assets";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
   isLoading: boolean;
   getFreeNowVehicles: Function;
   getFreeNowVehiclesSuccess: Function;
+  setVehicleMarkers: Function;
 };
 
 const FreeNow: FC<FreeNowProps> = ({
@@ -29,6 +29,7 @@ const FreeNow: FC<FreeNowProps> = ({
   isLoading,
   getFreeNowVehicles,
   getFreeNowVehiclesSuccess,
+  setVehicleMarkers,
 }) => {
   const [filteredVehicles, setFilteredVehicles] = useState<FreenowVehicle[]>(
     []
@@ -37,8 +38,6 @@ const FreeNow: FC<FreeNowProps> = ({
   const [selectedVehicleState, setSelectedVehicleState] = useState<
     FreenowVehicleState | string
   >("all");
-
-  const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
 
   const vehicleStateOptions = [
     { label: "All", value: "all" },
@@ -82,7 +81,7 @@ const FreeNow: FC<FreeNowProps> = ({
         },
       })
     );
-    setVehicleMarkers(markers);
+    setVehicleMarkers(markers, assets.ICON_TAXI);
   }, [filteredVehicles]);
 
   const vehicleStateChangeHandler = (value: any) => {
@@ -91,16 +90,10 @@ const FreeNow: FC<FreeNowProps> = ({
 
   return (
     <div data-testid="freeNowComponent">
-      <Link data-testid="link-to-share-now" to={paths.SHARENOW}>
-        Share Now
-      </Link>
       <Select
         options={vehicleStateOptions}
         onChange={vehicleStateChangeHandler}
       />
-      {!isLoading && (
-        <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_TAXI} />
-      )}
 
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
@@ -125,6 +118,7 @@ const mapStateToProps = (state: object) => ({
 const mapDispatchToProps = {
   getFreeNowVehicles,
   getFreeNowVehiclesSuccess,
+  setVehicleMarkers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FreeNow);

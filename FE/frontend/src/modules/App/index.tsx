@@ -1,28 +1,48 @@
 import React from "react";
 import "./App.css";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import paths from "../../constants/paths";
 import FreeNow from "../Freenow/components";
 import ShareNow from "../Sharenow/components";
+import Map from "../../components/Map";
+import assets from "../../constants/assets";
+import NavBar from "./components/NavBar";
+import { getVehicleMarkersState, getVehicleIconUri } from "./selectors";
+import { VehicleMarker } from "../../common/interfaces/coords.interface";
 
-type AppProps = {};
+type AppProps = {
+  vehicleMarkers: VehicleMarker[];
+  vehicleIconUri: string;
+};
 
-const App: React.FC<AppProps> = ({}) => {
+const App: React.FC<AppProps> = ({ vehicleMarkers, vehicleIconUri }) => {
   return (
-    <div className="App">
+    <div className="app">
       <BrowserRouter>
-        <Switch>
-          <Route path={paths.FREENOW}>
-            <FreeNow />
-          </Route>
-          <Route path={paths.SHARENOW}>
-            <ShareNow />
-          </Route>
-        </Switch>
+        <div className="vehicle-container">
+          <NavBar />
+          <Switch>
+            <Route path={paths.FREENOW}>
+              <FreeNow />
+            </Route>
+            <Route path={paths.SHARENOW}>
+              <ShareNow />
+            </Route>
+          </Switch>
+        </div>
+        <div className="map-container">
+          <Map vehicleMarkers={vehicleMarkers} iconUri={vehicleIconUri} />
+        </div>
       </BrowserRouter>
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state: object) => ({
+  vehicleMarkers: getVehicleMarkersState(state),
+  vehicleIconUri: getVehicleIconUri(state),
+});
+
+export default connect(mapStateToProps)(App);

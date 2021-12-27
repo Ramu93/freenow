@@ -1,6 +1,4 @@
 import { createAction } from "redux-actions";
-import endpoints from "../../../constants/endpoints";
-import { get } from "../../../utils/apiUtil";
 import { SharenowVehicle } from "../interfaces/sharenow.interface";
 
 export const getShareNowVehicles = createAction(

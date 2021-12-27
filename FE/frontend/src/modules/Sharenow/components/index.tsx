@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { SharenowVehicle } from "../interfaces/sharenow.interface";
 import {
@@ -8,19 +7,19 @@ import {
   getShareNowVehiclesState,
 } from "../selectors";
 import { VehicleMarker } from "../../../common/interfaces/coords.interface";
-import Map from "../../../components/Map";
-import assets from "../../../constants/assets";
 import { useComponentDidMount } from "../../../utils/customHooks";
 import { getShareNowVehicles, getShareNowVehiclesSuccess } from "../actions";
+import { setVehicleMarkers } from "../../App/actions";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
-import paths from "../../../constants/paths";
+import assets from "../../../constants/assets";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
   isLoading: boolean;
   getShareNowVehicles: Function;
   getShareNowVehiclesSuccess: Function;
+  setVehicleMarkers: Function;
 };
 
 const ShareNow: FC<ShareNowProps> = ({
@@ -28,11 +27,11 @@ const ShareNow: FC<ShareNowProps> = ({
   isLoading,
   getShareNowVehicles,
   getShareNowVehiclesSuccess,
+  setVehicleMarkers,
 }) => {
   const [filteredVehicles, setFilteredVehicles] = useState<SharenowVehicle[]>(
     []
   );
-  const [vehicleMarkers, setVehicleMarkers] = useState<VehicleMarker[]>([]);
 
   useComponentDidMount(async () => {
     // set loader state
@@ -62,17 +61,14 @@ const ShareNow: FC<ShareNowProps> = ({
         },
       })
     );
-    setVehicleMarkers(markers);
+    setVehicleMarkers(markers, assets.ICON_CAR);
   }, [filteredVehicles]);
 
   return (
     <div>
-      <Link data-testid="link-to-free-now" to={paths.FREENOW}>
-        Free Now
-      </Link>
-      {!isLoading && (
+      {/* {!isLoading && (
         <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_CAR} />
-      )}
+      )} */}
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
           <>
@@ -101,6 +97,7 @@ const mapStateToProps = (state: object) => ({
 const mapDispatchToProps = {
   getShareNowVehicles,
   getShareNowVehiclesSuccess,
+  setVehicleMarkers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShareNow);
