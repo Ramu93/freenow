@@ -3,8 +3,6 @@ import {
   FreenowVehicle,
   FreenowVehicleState,
 } from "../../interfaces/freenowVehicles.interface";
-
-import { AiOutlineShop } from "react-icons/ai";
 import { MdOutlineCheckCircle, MdOutlineHighlightOff } from "react-icons/md";
 
 import "./styles.css";
@@ -34,6 +32,7 @@ const FreeNowCard: FC<FreeNowCardProps> = ({ vehicle }) => {
       />
     );
   }
+
   return (
     <div data-testid="free-now-vehicle-item" className="free-now-card">
       <div className="card-row-container">
