@@ -14,6 +14,7 @@ import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
 import assets from "../../../constants/assets";
 import ShareNowCard from "./ShareNowCard";
+import Loader from "../../../components/Loader";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
@@ -46,7 +47,9 @@ const ShareNow: FC<ShareNowProps> = ({
   });
 
   const updateFilteredVehicles = useMemo(
-    () => () => setFilteredVehicles(vehicles),
+    () => () => {
+      setFilteredVehicles(vehicles);
+    },
     [vehicles]
   );
 
@@ -72,9 +75,7 @@ const ShareNow: FC<ShareNowProps> = ({
 
   return (
     <>
-      {isLoading && (
-        <p className="loader">Loading...</p>
-      )}
+      {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
           <ShareNowCard vehicle={vehicle} />

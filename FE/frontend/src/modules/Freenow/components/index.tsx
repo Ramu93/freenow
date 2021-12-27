@@ -14,6 +14,7 @@ import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
 import Select from "../../../components/Select";
 import assets from "../../../constants/assets";
+import Loader from "../../../components/Loader";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -100,7 +101,7 @@ const FreeNow: FC<FreeNowProps> = ({
         options={vehicleStateOptions}
         onChange={vehicleStateChangeHandler}
       />
-
+      {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
           <>
