@@ -16,3 +16,11 @@
   flex: 2;
   height: 100vh;
 }
+
+.loader {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}

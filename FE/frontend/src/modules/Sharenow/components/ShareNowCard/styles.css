@@ -1,0 +1,86 @@
+.share-now-card {
+  height: 10em;
+  margin: 5px 40px 5px 40px;
+  display: flex;
+  flex-direction: column;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(231, 231, 231);
+}
+
+.card-row-container {
+  height: 2em;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.double-row {
+  height: 4em;
+}
+
+.text-vehicle-name {
+  font-weight: 700;
+}
+
+.text-address {
+  color: black;
+  font-size: small;
+}
+
+.custom-icon {
+  color: #8a8a8a;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.vin-container {
+  display: flex;
+  flex: 1;
+}
+
+.engine-container {
+  display: flex;
+  flex: 1;
+}
+
+.text-vehicle-info {
+  color: #8a8a8a;
+  font-size: small;
+}
+
+.condition-item-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.position-start {
+  justify-content: flex-start;
+}
+
+.position-center {
+  justify-content: center;
+}
+
+.position-end {
+  justify-content: end;
+}
+
+.condition-item-label {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #8a8a8a;
+  font-size: x-small;
+}
+
+.condition-item-value {
+  flex: 1;
+  display: flex;
+  font-size: small;
+  margin-top: 5px;
+}

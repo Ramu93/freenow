@@ -13,6 +13,7 @@ import { setVehicleMarkers } from "../../App/actions";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";
 import assets from "../../../constants/assets";
+import ShareNowCard from "./ShareNowCard";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
@@ -70,27 +71,15 @@ const ShareNow: FC<ShareNowProps> = ({
   }, [filteredVehicles]);
 
   return (
-    <div>
-      {/* {!isLoading && (
-        <Map vehicleMarkers={vehicleMarkers} icon={assets.ICON_CAR} />
-      )} */}
+    <>
+      {isLoading && (
+        <p className="loader">Loading...</p>
+      )}
       {!isLoading &&
         filteredVehicles.map((vehicle: SharenowVehicle) => (
-          <>
-            <div data-testid="share-now-vehicle-item">
-              ID: {vehicle.id} <br />
-              Name: {vehicle.name} <br />
-              Address: {vehicle.address} <br />
-              Engine Type: {vehicle.engineType} <br />
-              Interior: {vehicle.interior} <br />
-              Exterior: {vehicle.exterior} <br />
-              Fuel: {vehicle.fuel} <br />
-              vin: {vehicle.vin} <br />
-            </div>
-            <hr />
-          </>
+          <ShareNowCard vehicle={vehicle} />
         ))}
-    </div>
+    </>
   );
 };
 

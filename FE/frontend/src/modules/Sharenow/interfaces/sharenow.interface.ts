@@ -11,6 +11,6 @@ export interface SharenowVehicle {
 }
 
 export enum ConditionEnum {
-  GOOD,
-  UNACCEPTABLE,
+  GOOD = "GOOD",
+  UNACCEPTABLE = "UNACCEPTABLE",
 }
