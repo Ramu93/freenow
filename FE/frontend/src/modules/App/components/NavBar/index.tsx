@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
+import { MdLocalTaxi } from "react-icons/md";
+import { IoMdCar } from "react-icons/io";
 
 import paths from "../../../../constants/paths";
 import "./styles.css";
@@ -43,6 +45,7 @@ const NavBar: FC<NavBarProps> = ({}) => {
         className={determineNavElementClass(RouteEnum.SHARE_NOW)}
       >
         <span className={determineNavTextClass(RouteEnum.SHARE_NOW)}>
+          <IoMdCar size={22} className="nav-icon" />
           Share Now
         </span>
       </Link>
@@ -53,6 +56,7 @@ const NavBar: FC<NavBarProps> = ({}) => {
         className={determineNavElementClass(RouteEnum.FREE_NOW)}
       >
         <span className={determineNavTextClass(RouteEnum.FREE_NOW)}>
+          <MdLocalTaxi size={22} className="nav-icon" />
           Free Now
         </span>
       </Link>
