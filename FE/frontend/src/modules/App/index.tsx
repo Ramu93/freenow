@@ -9,7 +9,7 @@ import ShareNow from "../Sharenow/components";
 import Map from "../../components/Map";
 import NavBar from "./components/NavBar";
 import { getVehicleMarkersState, getVehicleIconUri } from "./selectors";
-import { VehicleMarker } from "../../common/interfaces/coords.interface";
+import { VehicleMarker } from "../../interfaces/coords.interface";
 
 type AppProps = {
   vehicleMarkers: VehicleMarker[];

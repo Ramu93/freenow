@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { VehicleMarker } from "../../../common/interfaces/coords.interface";
+import { VehicleMarker } from "../../../interfaces/coords.interface";
 import { setVehicleMarkers } from "../actions";
 
 interface AppState {

@@ -8,7 +8,7 @@ import {
 import { getFreeNowLoadingState, getFreeNowVehiclesState } from "../selectors";
 import { getFreeNowVehicles, getFreeNowVehiclesSuccess } from "../actions";
 import { setVehicleMarkers } from "../../App/actions";
-import { VehicleMarker } from "../../../common/interfaces/coords.interface";
+import { VehicleMarker } from "../../../interfaces/coords.interface";
 import { useComponentDidMount } from "../../../utils/customHooks";
 import endpoints from "../../../constants/endpoints";
 import { get } from "../../../utils/apiUtil";

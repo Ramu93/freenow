@@ -4,7 +4,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import {
   Coords,
   VehicleMarker,
-} from "../../common/interfaces/coords.interface";
+} from "../../interfaces/coords.interface";
 
 const mapStyles = {
   width: "66.5%",
