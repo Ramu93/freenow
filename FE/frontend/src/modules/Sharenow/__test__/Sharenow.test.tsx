@@ -2,8 +2,8 @@ import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import configureStore from "redux-mock-store";
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 import ShareNow from "../components";
 import shareNowVehicles from "../../../fixtures/shareNowVehicles.fixtures";

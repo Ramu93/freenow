@@ -33,6 +33,7 @@ const ShareNow: FC<ShareNowProps> = ({
   getShareNowVehiclesSuccess,
   setVehicleMarkers,
 }) => {
+  // for simplicity and to avoid over engineering of the code,i did not use Redux thunk or Saga to perform API calls
   useComponentDidMount(async () => {
     // set loader state
     getShareNowVehicles();

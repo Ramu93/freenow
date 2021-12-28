@@ -48,6 +48,7 @@ const FreeNow: FC<FreeNowProps> = ({
     { label: "Inactive", value: FreenowVehicleState.INACTIVE },
   ];
 
+  // for simplicity and to avoid over engineering of the code,i did not use Redux thunk or Saga to perform API calls
   useComponentDidMount(async () => {
     // fetch data on mount
     // set loading state

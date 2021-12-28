@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+To install the dependencies run the following command in this directory (FE/frontend):
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `npm install`
 
-## Available Scripts
-
-In the project directory, you can run:
+To start the application run the following command in this directory (FE/frontend):
 
 ### `npm start`
 
