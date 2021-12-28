@@ -17,6 +17,7 @@ import assets from "../../../constants/assets";
 import Loader from "../../../components/Loader";
 import FreeNowCard from "./FreeNowCard";
 import ResetButton from "../../../components/ResetButton";
+import Divider from "../../../components/Divider";
 
 export type FreeNowProps = {
   vehicles: FreenowVehicle[];
@@ -109,7 +110,10 @@ const FreeNow: FC<FreeNowProps> = ({
       {isLoading && <Loader />}
       {!isLoading &&
         filteredVehicles.map((vehicle: FreenowVehicle) => (
-          <FreeNowCard vehicle={vehicle} />
+          <>
+            <FreeNowCard vehicle={vehicle} />
+            <Divider />
+          </>
         ))}
     </div>
   );

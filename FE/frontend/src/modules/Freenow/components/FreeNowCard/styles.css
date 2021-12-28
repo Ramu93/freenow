@@ -1,12 +1,13 @@
 .free-now-card {
   height: 3em;
-  margin: 5px 40px 5px 40px;
+  padding: 5px 40px 5px 40px;
   display: flex;
   flex-direction: column;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(231, 231, 231);
   cursor: pointer;
+}
+
+.free-now-card:hover {
+  background-color: beige;
 }
 
 .card-row-container {
@@ -44,5 +45,3 @@
   font-size: small;
   margin-top: 5px;
 }
-
-

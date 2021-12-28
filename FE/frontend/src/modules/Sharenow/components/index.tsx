@@ -16,6 +16,7 @@ import assets from "../../../constants/assets";
 import ShareNowCard from "./ShareNowCard";
 import Loader from "../../../components/Loader";
 import ResetButton from "../../../components/ResetButton";
+import Divider from "../../../components/Divider";
 
 type ShareNowProps = {
   vehicles: SharenowVehicle[];
@@ -70,7 +71,10 @@ const ShareNow: FC<ShareNowProps> = ({
       </div>
       {!isLoading &&
         vehicles.map((vehicle: SharenowVehicle) => (
-          <ShareNowCard vehicle={vehicle} />
+          <>
+            <ShareNowCard vehicle={vehicle} />
+            <Divider />
+          </>
         ))}
     </div>
   );
