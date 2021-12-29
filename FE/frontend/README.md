@@ -1,3 +1,5 @@
+## Running the Application:
+
 ### `npm install`
 
 To install the dependencies run the following command in this directory (FE/frontend).
