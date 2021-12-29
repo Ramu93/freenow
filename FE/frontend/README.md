@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm test`
 
-There are eight test suites and 28 test cases in total.
+There are eight test suites and 28 test cases in total. 
 
 ### `npm run build`
 
@@ -40,3 +40,12 @@ Each module lists the vehicle information to the left. The positions of the vehi
 On the map, the position of all the vehicles is displayed by default. 
 
 Clicking on an item in the list displays the location of the corresponding vehicle on the map. 
+
+
+
+
+
+## Author:
+
+Ramu Ramasamy
+rram.ramasamy@gmail.com
