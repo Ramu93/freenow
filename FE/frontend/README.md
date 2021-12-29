@@ -1,6 +1,8 @@
 ### `npm install`
 
-To install the dependencies run the following command in this directory (FE/frontend):
+To install the dependencies run the following command in this directory (FE/frontend).
+
+_FYI: The application is built using create-react-app and Typescript._
 
 ### `npm start`
 
@@ -17,9 +19,22 @@ There are eight test suites and 28 test cases in total.
 
 Builds the app for production to the `build` folder.\
 
+.env file holds the required environment variables
 
-.env file holds the required environment variables 
+Google Maps is used to mark the coordinates of the vehicles.
+_Note: The API key for Google Maps is linked to my personal account._
 
-Google Maps is used to mark the coordinates of the vehicles. 
-Note: The API key for Google Maps is linked to my personal account.
+---
 
+## FREE NOW Frontend Application:
+
+###Modules:
+There are two main modules in the FREE NOW Frontend Application: 
+    - Share Now 
+    - Free Now
+
+Each module lists the vehicle information to the left. The positions of the vehicles are marked on a map by using the coordinates.
+
+On the map, the position of all the vehicles is displayed by default. 
+
+Clicking on an item in the list displays the location of the corresponding vehicle on the map. 
