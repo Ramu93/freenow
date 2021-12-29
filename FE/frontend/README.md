@@ -2,13 +2,13 @@
 
 ### `npm install`
 
-To install the dependencies run the following command in this directory (FE/frontend).
+To install the dependencies run this command in this directory (FE/frontend).
 
 _FYI: The application is built using create-react-app and Typescript._
 
 ### `npm start`
 
-To start the application run the following command in this directory (FE/frontend):
+To start the application run this command in this directory (FE/frontend):
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
