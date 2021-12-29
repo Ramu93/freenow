@@ -1,0 +1,22 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 5%;
+  left: 28vw;
+  color: rgb(195, 227, 255);
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  padding: 0%;
+  box-shadow: 0 5px 10px rgb(255, 254, 254);
+  background: transparent;
+}
+
+.scroll-to-top:hover {
+  color: #37a0fc;
+}
+
+@media only screen and (max-width: 1060px) {
+  [class*="scroll-to-top"] {
+    left: 90vw;
+  }
+}

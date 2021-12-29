@@ -10,6 +10,7 @@ import Map from "../../components/Map";
 import NavBar from "./components/NavBar";
 import { getVehicleMarkersState, getVehicleIconUri } from "./selectors";
 import { VehicleMarker } from "../../interfaces/coords.interface";
+import ScrollToTop from "../../components/ScrollToTop";
 
 type AppProps = {
   vehicleMarkers: VehicleMarker[];
@@ -31,6 +32,7 @@ const App: React.FC<AppProps> = ({ vehicleMarkers, vehicleIconUri }) => {
             </Route>
             <Redirect to={paths.SHARENOW} />
           </Switch>
+          <ScrollToTop />
         </div>
         <div className="map-container">
           <Map vehicleMarkers={vehicleMarkers} iconUri={vehicleIconUri} />
