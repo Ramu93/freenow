@@ -21,7 +21,7 @@ There are eight test suites and 28 test cases in total.
 
 Builds the app for production to the `build` folder.\
 
-.env file holds the required environment variables
+_.env_ file holds the required environment variables
 
 Google Maps is used to mark the coordinates of the vehicles.
 _Note: The API key for Google Maps is linked to my personal account._
