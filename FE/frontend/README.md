@@ -30,7 +30,7 @@ _Note: The API key for Google Maps is linked to my personal account._
 
 ## FREE NOW Frontend Application:
 
-###Modules:
+### Modules:
 There are two main modules in the FREE NOW Frontend Application: - Share Now - Free Now
 
 Each module lists the vehicle information to the left. The positions of the vehicles are marked on a map by using the coordinates.
